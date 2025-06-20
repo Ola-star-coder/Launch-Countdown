@@ -1,22 +1,26 @@
-var countDownDate = new Date("July 16, 2025 00:00:00").getTime();
-var x = setInterval(function(){
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+const countDown = () =>{
+  const date = new Date('July 3, 2025 00:00:00').getTime();
+  const now = new Date().getTime();
+  const difference = date - now;
+  const seconds = 1000;
+  const minutes = seconds * 60;
+  const hours = minutes * 60;
+  const days = hours * 24;
 
-    document.getElementById('days').innerHTML = days;
-    document.getElementById('hours').innerHTML = hours;
-    document.getElementById('minutes').innerHTML = minutes;
-    document.getElementById('seconds').innerHTML = seconds;
+  let timeInDays = Math.floor(difference / days);
+  let timeInHours = Math.floor((difference % days) / hours);
+  let timeInMinutes = Math.floor((difference % hours) / minutes);
+  let timeInSeconds = Math.floor((difference % minutes) / seconds);
 
-    if (distance < 0){
-        clearInterval(x);
-        document.getElementById('days').innerHTML = '00';
-        document.getElementById('hours').innerHTML = '00';
-        document.getElementById('minutes').innerHTML = '00';
-        document.getElementById('seconds').innerHTML = '00';
-    }
-}, 1000);
+  timeInDays = timeInDays < 10 ? '0' + timeInDays : timeInDays
+  timeInHours = timeInHours < 10 ? '0' + timeInHours :timeInHours
+  timeInMinutes = timeInMinutes < 10 ? '0' + timeInMinutes :  timeInMinutes
+  timeInSeconds = timeInSeconds < 10 ? '0' + timeInSeconds : timeInSeconds
+
+  document.getElementById('days').innerHTML = timeInDays;
+  document.getElementById('hours').innerHTML = timeInHours;
+  document.getElementById('minutes').innerHTML = timeInMinutes;
+  document.getElementById('seconds').innerHTML = timeInSeconds;
+}
+
+setInterval(countDown, 1000)
