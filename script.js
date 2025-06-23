@@ -24,3 +24,4 @@ const countDown = () =>{
 }
 
 setInterval(countDown, 1000)
+countDown();
